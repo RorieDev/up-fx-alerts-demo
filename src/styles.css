@@ -29,7 +29,11 @@ body {
 .app {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 18px 22px 40px;
+  padding: 14px 16px 32px;
+  padding-left: max(14px, env(safe-area-inset-left));
+  padding-right: max(14px, env(safe-area-inset-right));
+  padding-top: max(14px, env(safe-area-inset-top));
+  padding-bottom: max(32px, env(safe-area-inset-bottom));
 }
 
 .header {
@@ -243,3 +247,61 @@ body {
 .btn.active { background: rgba(34,211,238,0.12); border-color: var(--accent); color: var(--accent); }
 
 .footer { text-align: center; color: var(--muted); font-size: 11px; margin-top: 24px; }
+
+/* Horizontal scrolling controls bar */
+.controls {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex-wrap: nowrap;
+  padding-bottom: 4px;
+}
+.controls::-webkit-scrollbar { display: none; }
+.controls .btn { flex-shrink: 0; }
+
+/* iPhone / mobile tuning */
+@media (max-width: 720px) {
+  .app { padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
+  .header {
+    padding: 10px 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+  .brand-title { font-size: 15px; }
+  .brand-sub { font-size: 11px; }
+  .logo { width: 32px; height: 32px; }
+  .live { font-size: 10px; padding: 5px 9px; }
+
+  .pairs {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .pair { padding: 10px 11px; border-radius: 10px; }
+  .pair-name { font-size: 13px; }
+  .pair-price { font-size: 15px; }
+  .pair-meta { font-size: 11px; margin-top: 6px; }
+
+  .grid { gap: 12px; }
+  .panel {
+    min-height: 380px;
+    max-height: 440px;
+    padding: 12px 13px;
+    border-radius: 12px;
+  }
+  .panel-title { font-size: 13px; }
+  .panel-count { font-size: 10px; }
+  .tweet-text, .news-title { font-size: 13px; }
+  .insight-body { font-size: 12px; }
+  .avatar { width: 26px; height: 26px; font-size: 10px; }
+  .tag { font-size: 9px; padding: 2px 7px; }
+  .btn { padding: 7px 12px; font-size: 12px; }
+}
+
+@media (max-width: 380px) {
+  .pairs { grid-template-columns: 1fr; }
+  .pair-price { font-size: 17px; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .live { align-self: stretch; justify-content: center; }
+}
+
