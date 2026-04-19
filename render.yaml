@@ -1,0 +1,8 @@
+# Render manifest (example). Replace repo with your Git repo URL.
+services:
+  - type: static_site
+    name: up-fx-alerts-demo
+    repo: https://github.com/your-org/your-repo
+    branch: main
+    buildCommand: npm ci && npm run build
+    publishPath: dist
